@@ -2,7 +2,6 @@
 ```bash
 pnpm istall
 ```
-
 ## 실행
 ### 1. 컴파일 후 실행
 ```bash
@@ -14,3 +13,7 @@ pnpm run start
 ```bash
 ts-node src/index.ts
 ```
+---
+
+# Document
+[**비동기**](https://github.com/jbeat30/js-ts-study/blob/main/documents/Asynchronous.md)
