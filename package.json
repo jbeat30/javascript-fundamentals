@@ -1,0 +1,22 @@
+{
+  "name": "javascript-study",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "start": "node dist/index.js",
+    "dev": "tsc --watch"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.3"
+  },
+  "private": true,
+  "packageManager": "pnpm",
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=8"
+  }
+}
