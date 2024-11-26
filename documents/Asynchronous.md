@@ -48,4 +48,4 @@
 - 순차적인 비동기 처리나 간단할 때는 `async/await`를 사용하고, 병렬 처리나 복잡할 때는 `Promise`를 사용하는 것이 좋음
 ---
 # 비동기 처리 관련 코드
-코드 예시 [Asynchronous.ts](src/Asynchronous.ts)
+코드 예시 [Asynchronous.ts](https://github.com/jbeat30/js-ts-study/blob/main/documents/src/Asynchronous.ts)
