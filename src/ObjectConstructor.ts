@@ -47,22 +47,19 @@ interface CalculatorFncConstructor {
 // 생성자 함수 (ES5 스타일)
 function CalculatorFnc(this: CalculatorFnc, name: string) {
   this.name = name;
+}
 
-  this.add = function (a: number, b: number): number {
-    return a + b;
-  };
-
-  this.div = function (a: number, b: number): number {
-    return a / b;
-  };
-
-  this.greet = function (): string {
-    return `Hello ${this.name}`;
-  };
+CalculatorFnc.prototype.add = function (a: number, b: number): number {
+  return a + b;
+}
+CalculatorFnc.prototype.div = function (a: number, b: number): number {
+  return a / b;
+}
+CalculatorFnc.prototype.greet = function (): string {
+  return `Hello ${this.name}`;
 }
 
 // 타입을 명시하여 인스턴스 생성
-
 const calcFnc = new (CalculatorFnc as any)('kang');
 const calcFnc2 = new (CalculatorFnc as any)('');
 
