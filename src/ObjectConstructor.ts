@@ -34,6 +34,7 @@ console.log(calc1.div(6, 3)); // calc를 calc1로 수정
 // 인터페이스 선언
 interface CalculatorFnc {
   name: string;
+  age: number;
   add(a: number, b: number): number;
   div(a: number, b: number): number;
   greet(): string;
@@ -60,8 +61,13 @@ CalculatorFnc.prototype.greet = function (): string {
 }
 
 // 타입을 명시하여 인스턴스 생성
-const calcFnc = new (CalculatorFnc as any)('kang');
-const calcFnc2 = new (CalculatorFnc as any)('');
+const createCalculator = (name: string = ''): CalculatorFnc => {
+  return new (CalculatorFnc as unknown as CalculatorFncConstructor)(name); // 타입을 명시적으로 지정
+};
+
+// 타입을 명시하여 인스턴스 생성
+const calcFnc = createCalculator('kang');
+const calcFnc2 = createCalculator();
 
 console.log('====================');
 console.log(CalculatorFnc.prototype.add === calcFnc.add);
