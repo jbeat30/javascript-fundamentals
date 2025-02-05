@@ -78,4 +78,4 @@
 ---
 
 ## 비동기 처리 관련 코드
-코드 예시 [Asynchronous.ts](https://github.com/jbeat30/js-ts-study/blob/main/src/Asynchronous.ts)
+코드 예시 [asynchronous.ts](https://github.com/jbeat30/js-ts-study/blob/main/src/asynchronous.ts)

@@ -16,4 +16,4 @@ ts-node src/index.ts
 ---
 
 # Document
-[**비동기**](https://github.com/jbeat30/js-ts-study/blob/main/documents/Asynchronous.md)
+[**비동기**](https://github.com/jbeat30/js-ts-study/blob/main/documents/asynchronous.md)
