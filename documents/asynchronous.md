@@ -1,81 +1,210 @@
-### **Promise란?**
+# 🌟 자바스크립트 비동기 프로그래밍 이해하기
 
--   **Promise**는 비동기 작업이 완료되었을 때의 결과를 나타내는 **객체**로, 비동기 작업의 성공 또는 실패를 처리하기 위한 방법을 제공
--   JavaScript에서 제공하는 **Promise API**를 사용하면 비동기 작업의 결과를 처리하고 관리할 수 있음
--   **Promise**에 세 가지 상태  
-    -   **Pending**: 비동기 작업이 아직 완료되지 않은 상태 **(대기 중)**
-    -   **Fulfilled**: 비동기 작업이 성공적으로 **완료**된 상태
-    -   **Rejected**: 비동기 작업이 실패하여 **에러**가 발생한 상태
-  
-  #### Promise API의 주요 메서드
+## 1. 🤔 비동기 프로그래밍이 필요한 이유
 
-  -   **then()**: **Promise**가 성공적으로 이행되었을 때 호출되는 메서드
-  -   **catch()**: **Promise**가 거부되었을 때 호출되는 메서드
-  -   **finally()**: **Promise**의 상태에 상관없이 항상 실행되는 메서드
+### 동기 vs 비동기
+JavaScript는 기본적으로 **동기적(Synchronous)** 으로 동작하며,  
+즉, 코드가 순차적으로 실행되며 한 작업이 끝날 때까지 다음 작업은 시작되지 않음
 
+```javascript
+console.log("첫 번째");  // 1️⃣ 첫 번째 실행
+console.log("두 번째");  // 2️⃣ 두 번째 실행
+console.log("세 번째");  // 3️⃣ 세 번째 실행
+```
+
+하지만 시간이 오래 걸리는 작업들이 있음
+- 🌐 서버에서 데이터 가져오기 (API 호출)
+- 📁 대용량 파일 처리
+- ⏲️ 타이머 설정
+
+> 💡 **API란?**  
+> Application Programming Interface의 약자로, 프로그램들이 서로 통신하는 방법을 정의한 규칙을 의미함
+
+```javascript
+const data = fetchDataFromServer();  // 3초 소요
+console.log("다음 작업");           // ⚠️ 3초 동안 멈춤
+```
+
+이런 문제를 해결하기 위해 **비동기 프로그래밍**이 필요함
+
+## 2. 💡 Promise 이해하기
+
+### Promise란?
+비동기 작업의 결과를 나타내는 객체로, 작업이 완료되면 성공 또는 실패를 알려줌
+
+> 💡 **Promise 쉽게 이해하기**  
+> 음식점 주문 번호표와 같음 - 주문(비동기 작업)을 하면 번호표(Promise)를 받고,   
+> 음식(결과)이 완성되면 알려줌
+
+### Promise의 3가지 상태
+| 상태 | 설명 | 실제 상황 |
+|------|------|-----------|
+| 🕒 **대기(Pending)** | 작업 진행 중 | 주문한 음식 조리 중 |
+| ✅ **성공(Fulfilled)** | 작업 완료 | 음식 완성 |
+| ❌ **실패(Rejected)** | 작업 실패 | 재료 소진으로 취소 |
+
+### 수동 Promise 생성하기 (new Promise())
+Promise는 new Promise((resolve, reject) => {...}) 형식으로 생성됨
+> 💡 **resolve와 reject란?**  
+resolve(value) → 작업 성공 시 호출 (Promise가 Fulfilled 상태가 됨)  
+reject(error) → 작업 실패 시 호출 (Promise가 Rejected 상태가 됨)
+```javascript
+const myPromise = new Promise((resolve, reject) => {
+    let success = true; // 성공 여부 (테스트용)
     
-    {
-    state: 'pending',  // 상태 ('pending', 'fulfilled', 'rejected')
-    value: undefined,  // 작업 결과값 (성공 시 이곳에 값이 들어감)
-    reason: undefined, // 오류 (실패 시 이곳에 오류가 들어감)
-    onFulfilled: [callback],  // 비동기 작업이 완료되었을 때 실행될 함수들
-    onRejected: [callback],   // 비동기 작업이 실패했을 때 실행될 함수들
+    setTimeout(() => {
+        if (success) {
+            resolve("🎉 작업 성공!");  // ✅ 성공 시 실행
+        } else {
+            reject("❌ 작업 실패!");   // ❌ 실패 시 실행
+        }
+    }, 2000); // 2초 후 실행
+});
+```
+
+### Promise 사용하기
+```javascript
+myPromise // 위에서 만든 예제
+  .then(result => console.log(result))  // ✅ 성공: "🎉 작업 성공!" 출력
+  .catch(error => console.log(error))   // ❌ 실패: "❌ 작업 실패!" 출력
+  .finally(() => console.log("🔄 작업 완료"));  // 🔄 항상 실행
+
+// fetch는 Promise를 반환
+fetch('https://api.example.com/data')  // 데이터 요청
+   .then(response => response.json())  // ✅ 성공시: 데이터 변환
+   .catch(error => console.log(error)) // ❌ 실패시: 에러 처리
+   .finally(() => console.log('완료')) // 🔄 항상: 마무리 작업
+```
+
+### 프로미스 체이닝 (Promise Chaining)
+여러 비동기 작업을 순차적으로 처리할 때 사용하며, `.then()`을 연속적으로 호출하여 작업을 연결 가능
+
+```javascript
+fetch('/api/user')
+    .then(response => response.json())  // 1️⃣ 사용자 데이터 가져오기
+    .then(user => fetch(`/api/posts/${user.id}`))  // 2️⃣ 사용자의 게시물 가져오기
+    .then(response => response.json())  // 3️⃣ 게시물 데이터 변환
+    .then(posts => console.log(posts))  // 4️⃣ 결과 출력
+    .catch(error => console.log(error)); // ❌ 에러 처리
+```
+
+> 💡 **프로미스 체이닝의 장점**
+> - 비동기 작업을 순차적으로 처리함
+> - 코드의 가독성을 높임
+
+## 3. ⚡ async/await 이해하기
+
+### async/await이란?
+Promise를 더 쉽게 사용할 수 있게 해주는 새로운 문법
+> 💡 **async/await 쉽게 이해하기**  
+> Promise의 `.then()` 지옥에서 벗어나 일반적인 코드처럼 작성할 수 있게 해주는 도구
+
+### Promise vs async/await 비교
+```javascript
+// Promise 방식 👇
+function getUser() {
+   return new Promise((resolve, reject) => { // ✅ 명확한 Promise 반환
+      fetch('/api/user')
+        .then(res => res.json())
+        .then(user => {
+           fetch(`/api/posts/${user.id}`)
+             .then(res => res.json())
+             .then(posts => resolve(posts)) // ✅ resolve 호출
+             .catch(error => reject(error)); // ✅ reject 호출
+        })
+        .catch(error => reject(error)); // ✅ reject 호출
+   });
+}
+
+
+// async/await 방식 👇
+async function getUser() {
+    try {
+        const res = await fetch('/api/user');
+        const user = await res.json();
+        const posts = await fetch(`/api/posts/${user.id}`);
+        return posts.json();
+    } catch (error) {
+        console.log(error);
     }
-    
+}
+```
 
----
+## 4. 🚀 실전 활용 패턴
 
-### **1. async/await**
+### 비동기 작업 처리 방법
+1. **순차 처리** (하나씩)
+```javascript
+async function sequential() {
+    const result1 = await task1();  // 1번 작업 완료 후
+    const result2 = await task2();  // 2번 작업 시작
+}
+```
 
--   **동기 코드처럼 보임**: async/await를 사용하면 비동기 코드를 작성할 때도 마치 동기 코드처럼 보임  
-    그래서 가독성이 좋음
--   순차적 처리
-  
-  #### 오류 처리
-  
-  -   **async/await**는 **try/catch 구문**을 사용하여 오류를 처리할 수 있음
-  -   반드시 **try/catch** 블록에서 해야 함
+2. **병렬 처리** (동시에)
+```javascript
+async function parallel() {
+    const [result1, result2] = await Promise.all([
+        task1(),  // 1번 작업 시작
+        task2()   // 2번 작업 동시 시작
+    ]);
+}
+```
 
----
+> 💡 **Promise.all이란?**  
+> 동시에 다중으로 Promise를 처리할 수 있음 단, 하나라도 실패하면 모든 작업이 중단 
+> `Promise.allSettled`를 사용하면 사용하면 성공과 실패를 구분하여 처리 가능
 
-### **2. Promise 체이닝 (Promise API)**
+```javascript
+// Promise.allSettled 예제
+async function parallelSettled() {
+    const results = await Promise.allSettled([
+        task1(),  // 성공 또는 실패
+        task2()   // 성공 또는 실패
+    ]);
+    results.forEach(result => {
+        if (result.status === 'fulfilled') {
+            console.log('성공:', result.value);
+        } else {
+            console.log('실패:', result.reason);
+        }
+    });
+}
+```
 
--   **Promise 체이닝**은 비동기 작업을 **순차적**으로 **처리**할 때 사용
--   **then()** 메서드를 활용하여 각 작업의 결과를 다음 작업으로 전달하며 **순차적 처리**
--   이를 통해 코드의 가독성과 관리가 용이
+### ⚠️ 주의사항
+1. **불필요한 대기를 없애기**
+```javascript
+// ❌ 잘못된 예 (순차 실행)
+const result1 = await task1();
+const result2 = await task2();
 
+// ✅ 좋은 예 (병렬 실행)
+const [result1, result2] = await Promise.all([task1(), task2()]);
+```
 
-  #### **병렬 작업**
-  
-  -   여러 비동기 작업을 병렬로 처리하려면 **Promise API에 병렬 메서드** 사용해야 함  
-       `Promise.all`, `Promise.allSettled`, `Promise.race`, `Promise.any`
-  -   **체이닝**과는 **다른 방식**
-  
-  
-  #### 오류 처리
-  
-  -   **Promise** 체이닝에서 발생한 오류는 **catch()** 메서드를 통해 처리 가능
-  -   **then()에서** 발생한 오류는 체이닝 된 **catch()**에서 **모두 처리**되므로, 코드가 깔끔해짐
-  -   중간에 오류가 발생해도 **첫 번째 **catch()****에서 모든 오류를 통합적으로 **처리 가능**
+2. **에러 처리는 필수**
+```javascript
+// ❌ 잘못된 예
+const data = await getData();
 
----
+// ✅ 좋은 예
+try {
+    const data = await getData();
+} catch (error) {
+    console.log('에러 발생:', error);
+}
+```
 
-### **3. async/await vs Promise**
+## 5. 🎯 실전 가이드
+| 상황 | 사용 방식 | 이유 |
+|------|-----------|------|
+| 간단한 데이터 요청 | Promise | 코드가 직관적임 |
+| 여러 데이터 동시 요청 | Promise.all | 성능이 좋음 |
+| 복잡한 데이터 처리 | async/await | 코드 이해가 쉬움 |
+| 에러 처리가 중요할 때 | async/await | try-catch 사용 가능 |
 
--   Promise는 비동기 작업을 처리하는 객체이고, async/await는 Promise API를 더 쉽게 사용할 수 있게 해주는 문법
--   async/await는 Promise API를 더 쉽게 사용할 수 있게 해주는 문법이므로, async/await를 사용하면 Promise API를 사용하는 것보다 코드가 더 간결해짐
--   async/await는 Promise를 사용하는 것보다 가독성이 더 좋음
-
----
-
-### **4. 🔥요약** 
-
-1.  async/await과 Promise 체이닝은 **모두 순차적**으로 비동기 작업을 처리할 수 있음
-2.  Promise 체이닝은 가독성이 좋음 하지만 **async/await는 동기적인 코드처럼 보여 가독성이 더 좋음**
-3.  **비동기 병렬 작업**은 **Promise API의 병렬 처리 메서드 사용**
-4.  "Promise를 직접 사용"은 말은 Promise 메서드(API)를 사용을 의미
-5.  참고로 Promise API는 JavaScript에서 제공하는 Promise 관련 메서드이고, Promise 객체를 반환
----
-
-## 비동기 처리 관련 코드
-코드 예시 [asynchronous.ts](https://github.com/jbeat30/js-ts-study/blob/main/src/asynchronous.ts)
+> 💡 **TIP**
+> 1. Promise와 async/await는 섞어서 사용해도 됨
+> 2. 단순한 상황에선 Promise를, 복잡한 상황에선 async/await를 사용하면 좋음
+> 3. `Promise.allSettled`를 사용하면 모든 작업의 성공/실패를 구분하여 처리 가능
