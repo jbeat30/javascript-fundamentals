@@ -16,4 +16,4 @@ ts-node src/index.ts
 ---
 
 # Document
-[**비동기**](https://github.com/jbeat30/js-ts-study/blob/main/documents/asynchronous.md)
+🌟 자바스크립트 비동기 프로그래밍 이해하기 [**바로가기**](https://github.com/jbeat30/js-ts-study/blob/main/documents/asynchronous.md)
