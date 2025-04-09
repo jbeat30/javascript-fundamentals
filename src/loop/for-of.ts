@@ -24,3 +24,8 @@ for (const arrayValue of NumberArray) {
 for (const [key, value] of Object.entries(UserObject)) {
   console.log(`Object key: ${key}, value: ${value}`);
 }
+
+// entries() 메서드를 사용하여 배열의 인덱스와 값을 함께 순회
+for (const element of NumberArray.entries()) {
+  console.log(element);
+}

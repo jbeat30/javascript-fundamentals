@@ -8,6 +8,12 @@ numbers.sort((a, b) => a - b); // 오름차순 정렬
 console.log(numbers); // [1, 2, 4, 7, 9]
 numbers.sort((a, b) => b - a); // 내림차순 정렬
 console.log(numbers); // [9, 7, 4, 2, 1]
+const objArray = [
+  { name: "Alice", age: 25 },
+  { name: "Bob", age: 30 },
+  { name: "Charlie", age: 20 }
+];
+objArray.sort((a, b) => a.age - b.age); // 나이 기준 오름차순 정렬
 ```
 
 ## 2. `filter` - 조건에 맞는 요소 필터링
