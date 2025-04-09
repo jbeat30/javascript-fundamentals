@@ -105,7 +105,7 @@ fetch('https://api.example.com/data')
 ---
 
 ## 🔗 3. Promise Chaining (프로미스 체이닝)
-
+[👉 Example Code](https://github.com/jbeat30/js-ts-study/blob/main/src/promise/instance-method/chaining.ts)  
 여러 비동기 작업을 **순차적으로 연결**해서 처리할 수 있는 패턴  
 `.then()` 메서드는 새로운 `Promise`를 반환하기 때문에 계속 이어서 `.then()`으로 연결 가능
 
@@ -152,14 +152,14 @@ step1()
 
 ## 🚀 4. Static Methods (정적 메서드)
 
-| 메서드                | 설명                                                                 |
-| --------------------- | -------------------------------------------------------------------- |
-| `Promise.resolve()`   | 값을 바로 `fulfilled` 상태의 Promise로 감쌈                          |
-| `Promise.reject()`    | 값을 바로 `rejected` 상태의 Promise로 감쌈                           |
-| `Promise.all()`       | 모든 Promise가 `fulfilled` 될 때까지 대기, 하나라도 실패 시 `reject`됨 |
-| `Promise.allSettled()`| 모든 Promise가 `settled`(성공 or 실패)될 때까지 대기, 결과 배열 반환 |
-| `Promise.race()`      | 가장 먼저 `settled`된 Promise 하나만 반환                            |
-| `Promise.any()`       | `fulfilled`된 Promise 중 가장 먼저 도착한 결과 반환 (모두 실패 시 에러 발생) |
+| 메서드                | 설명                                                                                                                                           |
+| --------------------- |----------------------------------------------------------------------------------------------------------------------------------------------|
+| `Promise.resolve()`   | 값을 바로 `fulfilled` 상태의 Promise로 감쌈 [👉 Example Code](https://github.com/jbeat30/js-ts-study/blob/main/src/promise/static-method/resolve.ts)|
+| `Promise.reject()`    | 값을 바로 `rejected` 상태의 Promise로 감쌈 [👉 Example Code](https://github.com/jbeat30/js-ts-study/blob/main/src/promise/static-method/reject.ts)|
+| `Promise.all()`       | 모든 Promise가 `fulfilled` 될 때까지 대기, 하나라도 실패 시 `reject`됨 [👉 Example Code](https://github.com/jbeat30/js-ts-study/blob/main/src/promise/static-method/all.ts)|
+| `Promise.allSettled()`| 모든 Promise가 `settled`(성공 or 실패)될 때까지 대기, 결과 배열 반환 [👉 Example Code](https://github.com/jbeat30/js-ts-study/blob/main/src/promise/static-method/allSettled.ts)|
+| `Promise.race()`      | 가장 먼저 `settled`된 Promise 하나만 반환 [👉 Example Code](https://github.com/jbeat30/js-ts-study/blob/main/src/promise/static-method/race.ts)|
+| `Promise.any()`       | `fulfilled`된 Promise 중 가장 먼저 도착한 결과 반환 (모두 실패 시 에러 발생) [👉 Example Code](https://github.com/jbeat30/js-ts-study/blob/main/src/promise/static-method/any.ts)|
 ```javascript
 Promise.all([
   fetch('/user'),
@@ -182,7 +182,7 @@ Promise.all([
 
 복잡한 비동기 로직을 `Promise`와 `async/await`으로 바꾸면 가독성과 유지보수성이 훨씬 좋아짐
 
-### async/await 개요
+### async/await 개요 [👉 Example Code](https://github.com/jbeat30/js-ts-study/blob/main/src/promise/syntex/async-await.ts)
 
 - `async` 키워드가 붙은 함수는 항상 `Promise`를 반환
 - `await`는 `Promise`가 처리될 때까지 기다렸다가 결과를 반환
