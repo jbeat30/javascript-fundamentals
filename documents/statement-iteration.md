@@ -11,10 +11,10 @@ JavaScript의 반복문은 조건이 참인 동안 특정 코드를 반복적으
 - 배열의 인덱스를 순회하거나 반복 횟수를 제어할 때 적합
 - 조건이 `false`가 되면 반복 종료
 
-```js
+```javascript
 // 👉 0부터 4까지 출력하는 반복문
 for (let i = 0; i < 5; i++) {
-  console.log(i);
+  console.log(i); // 0, 1, 2, 3, 4
 }
 ```
 
@@ -26,11 +26,11 @@ for (let i = 0; i < 5; i++) {
 - 반복 횟수를 예측할 수 없을 때 자주 사용
 - 조건이 처음부터 `false`면 한 번도 실행되지 않음
 
-```js
+```javascript
 // 👉 조건이 true일 동안 계속 반복
 let count = 0;
 while (count < 5) {
-  console.log(count);
+  console.log(count); // 0, 1, 2, 3, 4
   count++;
 }
 ```
@@ -42,11 +42,11 @@ while (count < 5) {
 - 사용자 입력처럼 **최소 한 번은 실행이 필요한 경우**에 적합
 - 조건이 거짓(`false`)이어도 1회는 실행됨
 
-```js
+```javascript
 // 👉 무조건 한 번 실행한 후 조건 확인
 let i = 0;
 do {
-  console.log(i);
+  console.log(i); // 0, 1, 2, 3, 4
   i++;
 } while (i < 5);
 ```
@@ -58,11 +58,11 @@ do {
 - 배열보다 객체 순회에 적합
 - 상속된 속성까지 순회하므로 `hasOwnProperty`로 필터링이 필요할 수 있음
 
-```js
+```javascript
 // 👉 객체의 키 반복
 const user = { name: "Lee", age: 28 };
 for (let key in user) {
-  console.log(key, user[key]);
+  console.log(key, user[key]); // name Lee, age 28
 }
 ```
 
@@ -73,11 +73,11 @@ for (let key in user) {
 - `value`를 바로 꺼내므로 `for...in`보다 배열에 더 적합
 - 객체에는 사용 불가능 (에러 발생)
 
-```js
+```javascript
 // 👉 배열의 각 요소 출력
 const arr = ["a", "b", "c"];
 for (let value of arr) {
-  console.log(value);
+  console.log(value); // a, b, c
 }
 ```
 
