@@ -59,17 +59,17 @@ console.log(map.get(objKey)); // 같은 참조니까 OK, 출력: 객체 키
 > `Map` 인스턴스에 직접 호출하는 메서드들로, 컬렉션의 조작과 순회 등을 담당함  
 > 🔥 = 실무에서 자주 사용 | 💡 = 상황에 따라 유용
 
-| 메서드                     | 설명 |
-|----------------------------|------|
-| 🔥 `set(key, value)`       | `key`에 해당하는 값을 설정 (기존 키면 덮어씀) |
-| 🔥 `get(key)`              | `key`에 해당하는 값을 반환 (`undefined`일 수 있음) |
-| 🔥 `has(key)`              | 해당 키가 존재하는지 확인 (boolean) |
-| 🔥 `delete(key)`           | 특정 키-값 쌍 제거, 성공 여부 반환 |
-| 🔥 `clear()`               | 모든 요소 제거 |
-| 🔥 `forEach(callbackFn)`   | 각 요소에 대해 콜백 실행 (삽입 순서 유지) |
-| 💡 `keys()`                | 모든 키를 `MapIterator`로 반환 |
-| 💡 `values()`              | 모든 값을 `MapIterator`로 반환 |
-| 💡 `entries()`             | `[key, value]` 쌍의 `MapIterator` 반환 |
+| 메서드                     | 설명                                                                                                                                        |
+|----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| 🔥 `set(key, value)`       | `key`에 해당하는 값을 설정 (기존 키면 덮어씀) [👉 Example Code](https://github.com/jbeat30/js-ts-study/blob/main/src/map/instance-method/set.ts)          |
+| 🔥 `get(key)`              | `key`에 해당하는 값을 반환 (`undefined`일 수 있음) [👉 Example Code](https://github.com/jbeat30/js-ts-study/blob/main/src/map/instance-method/get.ts)  |
+| 🔥 `has(key)`              | 해당 키가 존재하는지 확인 (boolean) [👉 Example Code](https://github.com/jbeat30/js-ts-study/blob/main/src/map/instance-method/has.ts)               |
+| 🔥 `delete(key)`           | 특정 키-값 쌍 제거, 성공 여부 반환 [👉 Example Code](https://github.com/jbeat30/js-ts-study/blob/main/src/map/instance-method/delete.ts)               |
+| 🔥 `clear()`               | 모든 요소 제거 [👉 Example Code](https://github.com/jbeat30/js-ts-study/blob/main/src/map/instance-method/clear.ts)                             |
+| 🔥 `forEach(callbackFn)`   | 각 요소에 대해 콜백 실행 (삽입 순서 유지) [👉 Example Code](https://github.com/jbeat30/js-ts-study/blob/main/src/map/instance-method/forEach.ts)          |
+| 💡 `keys()`                | 모든 키를 `MapIterator`로 반환 [👉 Example Code](https://github.com/jbeat30/js-ts-study/blob/main/src/map/instance-method/keys.ts)               |
+| 💡 `values()`              | 모든 값을 `MapIterator`로 반환 [👉 Example Code](https://github.com/jbeat30/js-ts-study/blob/main/src/map/instance-method/values.ts)             |
+| 💡 `entries()`             | `[key, value]` 쌍의 `MapIterator` 반환 [👉 Example Code](https://github.com/jbeat30/js-ts-study/blob/main/src/map/instance-method/entries.ts) |
 
 > `forEach` 콜백 함수의 시그니처 `callbackFn(value, key, map)`  
 > 다른 컬렉션(`Array`)과 순서가 다르므로 혼동 주의 =>  Array에서는 `callbackFn(element, index, array)` 형태로 호출됨
