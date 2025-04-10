@@ -14,11 +14,11 @@ JavaScript의 `Object`는 모든 객체의 기반이 되는 표준 내장 객체
 
 | 메서드                                  | 설명 |
 |----------------------------------------|------|
-| 🔥 `Object.assign()`                   | 하나 이상의 소스 객체를 대상 객체에 병합 (얕은 복사) |
-| 🔥 `Object.keys()`                     | 객체의 열거 가능한 key들을 배열로 반환 |
-| 🔥 `Object.values()`                   | 객체의 열거 가능한 값들을 배열로 반환 |
-| 🔥 `Object.entries()`                  | 객체를 `[key, value]` 쌍의 배열로 반환 |
-| 💡 `Object.fromEntries()`              | `[key, value]` 쌍 배열을 객체로 변환 |
+| 🔥 `Object.assign()`                   | 하나 이상의 소스 객체를 대상 객체에 병합 (얕은 복사) [👉 Example Code](https://github.com/jbeat30/js-ts-study/blob/main/src/object/static-method/assign.ts)|
+| 🔥 `Object.keys()`                     | 객체의 열거 가능한 key들을 배열로 반환 [👉 Example Code](https://github.com/jbeat30/js-ts-study/blob/main/src/object/static-method/keys.ts)|
+| 🔥 `Object.values()`                   | 객체의 열거 가능한 값들을 배열로 반환 [👉 Example Code](https://github.com/jbeat30/js-ts-study/blob/main/src/object/static-method/values.ts)|
+| 🔥 `Object.entries()`                  | 객체를 `[key, value]` 쌍의 배열로 반환 [👉 Example Code](https://github.com/jbeat30/js-ts-study/blob/main/src/object/static-method/entries.ts)|
+| 💡 `Object.fromEntries()`              | `[key, value]` 쌍 배열을 객체로 변환 [👉 Example Code](https://github.com/jbeat30/js-ts-study/blob/main/src/object/static-method/fromEntries.ts)|
 | `Object.create()`                      | 지정한 프로토타입을 갖는 새 객체 생성 |
 | `Object.hasOwn()`                      | 객체가 특정 속성을 직접 보유했는지 확인 (ES2022) |
 | `Object.freeze()`                      | 객체를 동결하여 수정, 추가, 삭제를 막음 |
@@ -44,7 +44,7 @@ JavaScript의 `Object`는 모든 객체의 기반이 되는 표준 내장 객체
 
 | 메서드                    | 설명 |
 |---------------------------|------|
-| `hasOwnProperty()`        | 객체가 특정 속성을 직접 보유했는지 확인 |
+| `hasOwnProperty()`        | 객체가 특정 속성을 직접 보유했는지 확인 [👉 Example Code](https://github.com/jbeat30/js-ts-study/blob/main/src/object/instance-method/hasOwnProperty.ts)|
 | `propertyIsEnumerable()`  | 해당 속성이 열거 가능한지 확인 |
 | `isPrototypeOf()`         | 객체가 다른 객체의 프로토타입에 포함되어 있는지 확인 |
 | `toString()`              | 객체를 문자열로 변환 (기본은 `[object Object]`) |
